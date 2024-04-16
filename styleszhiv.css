@@ -1,0 +1,202 @@
+@font-face {
+    font-family: 'Triod';
+    src: url('fonts/TriodPostnaja.ttf') format('woff2'), /* Формат WOFF2 */
+         url('fonts/TriodPostnaja.ttf') format('woff'); /* Формат WOFF */
+
+    font-weight: normal;
+    font-style: normal;
+}
+body, html {
+    margin: 0;
+    height: 100%;
+    font-family: 'Triod', sans-serif;
+    background: url('img/zhiv1fon2.jpeg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+#scoreCounter {
+    position: absolute;
+    display: inline-block;
+    left: 10px;
+    top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.scoreImageClass {
+    width: 160px; /* Your desired width */
+    /* Other styles to make it look good in your game */
+}
+#scoreText {
+    position: absolute;
+    top: 57%; /* adjust if necessary */
+    left: 50%; /* adjust if necessary */
+    transform: translate(-55%, -55%);
+    z-index: 10; /* Ensure it's above the image */
+    color: aliceblue;
+    /* Your styles for the score text */
+}
+
+#animalField {
+    position: absolute;
+    right: 10%;
+    top: 35%;
+    width: 40%; /* Ширина поля для животных */
+    height: 50%; /* Высота поля для животных */
+    z-index: 0;
+}
+
+.animalOnCloud {
+    position: absolute;
+    width: 250px; /* Увеличиваем размеры контейнера для животного */
+    height: 250px;
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    left: calc(50% + 50px);
+    transition: opacity 1s;
+}
+
+.cloudImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Увеличиваем размеры облака */
+    height: auto;
+    z-index: -1; /* Облако будет позади животного */
+}
+
+.animalImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px; /* Увеличиваем размеры изображения животного */
+    height: auto;
+    z-index: 1; /* Животное будет поверх облака */
+    transform: translate(32.5%, 0px); /* Поднимаем изображение животного над облаком */
+    border-radius: 50%;
+    border: rgb(207, 207, 207) 2px solid;
+    background-color: rgba(255, 255, 255, 0.418);
+}
+
+.animalAtDoor {
+    width: 150px; /* Ширина животного остаётся автоматически подгоняемой */
+    height: 150px;
+    position: absolute;
+    bottom: 20px;
+    left: 150px;
+    transform: translateX(-50%);
+    transition: opacity 2s; /* Анимация исчезновения */
+    opacity: 1; /* Начальная прозрачность */
+    z-index: 10; /* Животное будет над другими элементами */
+}
+
+
+#teremok {
+    width: 200px;
+    height: 400px;
+    position: absolute;
+    left: 500px;
+    bottom: 100px;
+   /* border: 3px dashed #8e44ad;*/
+    z-index: 7;
+}
+
+
+
+#gameArea {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+
+#notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+#helpButton {
+    position: absolute;
+    bottom: 0.5vh;
+    left: 0vw;
+}
+#helpButton1 {
+    position: absolute;
+    bottom: 0.5vh;
+    right: 0vw;
+}
+
+.buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: transparent; /* Убираем фоновый цвет */
+    color: #141414;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: transform 0.2s; /* Добавляем анимацию при наведении */
+    position: relative; /* Добавляем относительное позиционирование */
+}
+
+.buttons img {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 180px; /* Устанавливаем ширину изображения */
+    height: auto; /* Сохраняем пропорции */
+}
+
+.buttons a:hover {
+    transform: scale(1.05); /* Увеличиваем кнопку при наведении */
+}
+
+.buttons a span {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Triod', sans-serif; /* Используем шрифт Roboto */
+}
+
+.beresta{
+    width: 600px;
+    height: 180px;
+    position: absolute;
+    top: 7vh;
+    right: 5vw;
+    z-index: 1;
+    transform: scale(-1, 1);
+}
+.baba-yaga-image {
+    position: absolute;
+    top: -1.2vh;
+    right: 0vw;
+    width: 200px; /* Уменьшаем размер изображения Бабы Яги */
+    height: auto;
+    z-index: 2;
+    transform: scale(-1, 1);
+}
+
+#baba-yaga-image1{
+    width: 160%;
+}
+h1 {
+    font-size: 21px;
+    color: #000000c1;
+    font-family: 'Triod', sans-serif;
+    position: absolute;
+    top: 12vh;
+    right: 14vw;
+    z-index: 3;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волшебный лес</title>
+    <link rel="stylesheet" href="stylesvolsh.css">
+</head>
+<body>
+    <h1>УКАЖИ К КАКОЙ СКАЗКЕ <br>ОТНОСИТСЯ ПЕРСОНАЖ</h1>
+    <div id="scoreCounter"></div>
+    <div id="gameArea">
+        <div id="charactersArea"></div>
+        <div id="leftArea" class="dropArea"></div>
+        <div id="rightArea" class="dropArea"></div>
+        <img src="img/volsh1fon2.jpeg" alt="фон" id="backgroundImage">
+        <div id="stoveArea" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <img src="img/beresta.png" alt="береста" class="beresta">
+        <div class="baba-yaga-image">
+            <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+        </div>
+        <div class="buttons">
+            <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
+            <a href="page2.html" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
+        </div>
+    </div>
+    <div id="notification" class="hidden"></div>
+    <div id="overlay"></div>
+    <script src="volsh.js"></script>
+</body>
+</html>

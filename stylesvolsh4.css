@@ -1,0 +1,341 @@
+@font-face {
+    font-family: 'Triod';
+    src: url('fonts/TriodPostnaja.ttf') format('woff2'), /* Формат WOFF2 */
+         url('fonts/TriodPostnaja.ttf') format('woff'); /* Формат WOFF */
+
+    font-weight: normal;
+    font-style: normal;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Triod', sans-serif;
+}
+
+#gameArea {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+#backgroundImage {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#stoveArea {
+    position: absolute;
+    top: 550px; /* Adjust based on your background image */
+    left: 520px; /* Adjust based on your background image */
+    width: 300px;
+    height: 200px;
+  /*  border: 2px dashed #333;*/
+    z-index: 10;
+}
+#stoveArea2{
+    position: absolute;
+    top: 580px; /* Adjust based on your background image */
+    left: 1100px; /* Adjust based on your background image */
+    width: 300px;
+    height: 200px;
+   /* border: 2px dashed #333;*/
+    z-index: 10;
+}
+.tool {
+    position: relative;
+    width: 250px;
+    cursor: grab;
+    z-index: 10;
+    border-radius: 25%;
+    background-color: rgba(250, 247, 247, 0.952); /* Полупрозрачный серый фон */
+    overflow: hidden; /* добавлено */
+    text-align: center;
+    padding: 10px;
+    font-size: 32px;
+}
+
+.tool img {
+    width: 100%; /* устанавливаем ширину изображения 100% от контейнера */
+    height: 100%; /* устанавливаем высоту изображения 100% от контейнера */
+    object-fit: cover;
+    border-radius: 25%; /* уменьшаем радиус изображения */
+}
+.tool.invisible {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.invisible{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.tool.dragging {
+    opacity: 0.5;
+    width: 100px; /* Или другой размер, который вы считаете подходящим */
+    height: 100px;
+    position: absolute;
+}
+
+#scoreCounter {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.scoreImageClass {
+    width: 160px; /* Your desired width */
+    /* Other styles to make it look good in your game */
+}
+#scoreText {
+    position: absolute;
+    top: 57%; /* adjust if necessary */
+    left: 50%; /* adjust if necessary */
+    transform: translate(-55%, -55%);
+    z-index: 10; /* Ensure it's above the image */
+    color: aliceblue;
+    /* Your styles for the score text */
+}
+
+
+.baba-yaga-image {
+    position: absolute;
+    top: -1.2vh;
+    left: -1.2vw;
+    width: 200px; /* Уменьшаем размер изображения Бабы Яги */
+    height: auto;
+    z-index: 2;
+}
+
+
+.baba-yaga-image img {
+    width: 100px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #141414;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.button:hover {
+    background-color: #e8e8e8;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.return-button {
+    margin-top: 10px;
+}
+
+#notification {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 101;
+}
+.success, .failure {
+    padding: 10px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    display: block;
+    background-color: #fff;
+}
+
+.success {
+    border: 2px solid green;
+    color: green;
+}
+
+.failure {
+    border: 2px solid red;
+    color: red;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.057);
+    z-index: 1000;
+}
+.hidden {
+    display: none;
+}
+
+.notification-visible {
+    display: block;
+}
+
+h1 {
+    font-size: 18px;
+    color: #000000c1;
+    font-family: 'Triod', sans-serif;
+    position: absolute;
+    top: 12vh;
+    left: 11vw;
+    z-index: 3;
+}
+
+#helpButton {
+    position: absolute;
+    bottom: -2vh;
+    left: -0.5vw;
+}
+#helpButton1{
+    position: absolute;
+    bottom: -2vh;
+    right: -0.5vw;
+}
+.buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: transparent; /* Убираем фоновый цвет */
+    color: #141414;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: transform 0.2s; /* Добавляем анимацию при наведении */
+    position: relative; /* Добавляем относительное позиционирование */
+}
+
+.buttons img {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 180px; /* Устанавливаем ширину изображения */
+    height: auto; /* Сохраняем пропорции */
+}
+
+.buttons a:hover {
+    transform: scale(1.05); /* Увеличиваем кнопку при наведении */
+}
+
+.buttons a span {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Triod', sans-serif; /* Используем шрифт Roboto */
+}
+
+.beresta{
+    width: 600px;
+    height: 180px;
+    position: absolute;
+    top: 7vh;
+    left: 4vw;
+    z-index: 1;
+}
+.baba-yaga-image {
+    position: absolute;
+    top: -1.2vh;
+    left: -1.2vw;
+    width: 200px; /* Уменьшаем размер изображения Бабы Яги */
+    height: auto;
+    z-index: 2;
+}
+
+
+#baba-yaga-image1{
+    width: 160%;
+}
+@media screen and (max-width: 1800px) {
+    .input-fields input {
+        width: 130px;
+        height: 30px;
+        left: 54%;
+    }
+    .input-fields{
+        top: 23vh;
+    }
+    
+    .baba-yaga-image {
+        width: 10%; /* Изменяем размер изображения для меньших экранов */
+        top: 10vh;
+    }
+
+    .buttons {
+        top: 25vh;
+    }
+    .beresta{
+        width: 30%; /* Изменяем размер изображения для меньших экранов */
+        top: 15vh;
+
+    }
+    h1{
+        top: 20vh;
+        width: 20%;
+    }
+    #helpButton {
+        position: absolute;
+        bottom: 1.5vh;
+        left: -0.5vw;
+    }
+    #helpButton1{
+        position: absolute;
+        bottom: 1.5vh;
+        right: -0.5vw;
+    }
+    .tool {
+        position: relative;
+        width: 110px;
+        height: 110px;
+        cursor: grab;
+        z-index: 10;
+        border-radius: 25%;
+        background-color: rgba(187, 187, 187, 0.661); /* Полупрозрачный серый фон */
+        overflow: hidden; /* добавлено */
+    }
+    
+    .tool img {
+        width: 100%; /* устанавливаем ширину изображения 100% от контейнера */
+        height: 100%; /* устанавливаем высоту изображения 100% от контейнера */
+        object-fit: cover;
+        border-radius: 25%; /* уменьшаем радиус изображения */
+    }
+    .tool.invisible {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .tool.dragging {
+        opacity: 0.5;
+        width: 90px; /* Или другой размер, который вы считаете подходящим */
+        height: 90px;
+        position: absolute;
+    }
+}

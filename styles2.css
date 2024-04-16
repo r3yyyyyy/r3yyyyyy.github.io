@@ -1,0 +1,254 @@
+@font-face {
+    font-family: 'Triod';
+    src: url('fonts/TriodPostnaja.ttf') format('woff2'), /* Формат WOFF2 */
+         url('fonts/TriodPostnaja.ttf') format('woff'); /* Формат WOFF */
+
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Triod', 'Roboto', sans-serif;
+    background-image: url('img/background2.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+.input-fields input[hidden] {
+    display: none;
+}
+.container {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 18px;
+    color: #000000c1;
+    font-family: 'Triod', 'Roboto', sans-serif;
+    position: absolute;
+    top: 12vh;
+    left: 11vw;
+    z-index: 3;
+}
+
+.input-fields {
+    text-align: center;
+    position: absolute;
+    top: 19vh; /* Поднимаем поля ввода выше */
+    left: 49.3%;
+    transform: translateX(-50%);
+}
+
+.input-fields input, .storybook-button {
+    width: 100%;
+    max-width: 300px;
+}
+
+.input-fields input {
+    display: block;
+    margin-bottom: 65px;
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(4, 4, 4, 0.538);
+    color: white;
+    text-align: center;
+}
+
+.storybook-button {
+    text-align: center;
+    display: block;
+    width: 170px;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 78px;
+    background-color: rgb(90,61,48);
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'Triod', 'Roboto', sans-serif;
+}
+
+.storybook-button:hover {
+    background-color: #53331a;
+}
+.beresta{
+    width: 600px;
+    height: 180px;
+    position: absolute;
+    top: 7vh;
+    left: 4vw;
+    z-index: 1;
+}
+.baba-yaga-image {
+    position: absolute;
+    top: -1.2vh;
+    left: -1.2vw;
+    width: 200px; /* Уменьшаем размер изображения Бабы Яги */
+    height: auto;
+    z-index: 2;
+}
+
+#baba-yaga-image1{
+    width: 160%;
+}
+.buttons {
+    position: absolute;
+    top: 35vh;
+    left: 1vw;
+}
+
+.buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: transparent;
+    color: #141414;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.buttons img {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 180px;
+    height: auto;
+}
+
+.buttons a:hover {
+    transform: scale(1.05);
+}
+
+.buttons a span {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Triod', 'Roboto', sans-serif;
+}
+#helpButton{
+    position: absolute;
+    top: 420px;
+}
+#infoButton{
+    position: absolute;
+    top: 420px;
+    margin-left: 1690px;
+
+}
+/* Адаптивность для различных разрешений экрана */
+@media screen and (max-width: 1800px) {
+    .input-fields input {
+        width: 130px;
+        height: 30px;
+        left: 54%;
+    }
+    .input-fields{
+        top: 23vh;
+    }
+    
+    .baba-yaga-image {
+        width: 10%; /* Изменяем размер изображения для меньших экранов */
+        top: 10vh;
+    }
+
+    .buttons {
+        top: 25vh;
+    }
+    .beresta{
+        width: 30%; /* Изменяем размер изображения для меньших экранов */
+        top: 15vh;
+
+    }
+    h1{
+        top: 20vh;
+        width: 20%;
+    }
+    #infoButton{
+    position: absolute;
+    top: 0px;
+    left: -1690px;
+    }
+    #helpButton{
+        position: absolute;
+        top: 170px;
+    }
+    .storybook-button {
+        text-align: center;
+        display: block;
+        width: 140px;
+        height: 50px;
+        padding: 10px;
+        margin-bottom: 62px;
+        background-color: rgb(90,61,48);
+        border-radius: 5px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-family: 'Triod', 'Roboto', sans-serif;
+    }
+    
+    .storybook-button:hover {
+        background-color: #53331a;
+    }
+}
+@media screen and (max-width: 900px) {
+    .input-fields {
+        top: 20vh;
+    }
+    
+    .baba-yaga-image {
+        width: 15%; /* Изменяем размер изображения для меньших экранов */
+        top: 10vh;
+    }
+
+    .buttons {
+        top: 20vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .input-fields {
+        top: 20vh;
+    }
+    
+    .baba-yaga-image {
+        width: 10%; /* Изменяем размер изображения для меньших экранов */
+        top: 10vh;
+    }
+
+    .buttons {
+        top: 10vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .input-fields {
+        top: 15vh;
+    }
+
+    .baba-yaga-image {
+        width: 10%; /* Изменяем размер изображения для еще меньших экранов */
+        top: 10vh;
+    }
+
+    .buttons {
+        top: 5vh;
+    }
+}

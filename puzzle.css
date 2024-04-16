@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  .puzzle-container {
+    position: relative;
+    width: 300px; /* Ширина контейнера для кусочков пазла */
+    height: 600px; /* Высота контейнера для кусочков пазла */
+    border: 2px solid #ccc;
+  }
+  
+  .puzzle-piece {
+    position: absolute;
+    width: 100px; /* Ширина кусочка пазла */
+    height: 100px; /* Высота кусочка пазла */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .connector {
+    margin-top: 50px;
+    width: 450px; /* Ширина области для соединения кусочков пазла */
+    height: 200px; /* Высота области для соединения кусочков пазла */
+    background-color: #e0e0e0;
+    border: 2px solid #ccc;
+  }
+  
