@@ -6,18 +6,50 @@
     <link rel="stylesheet" href="styleszhiv4.css">
 </head>
 <body>
-    <h1>Поймай </h1>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
+    <h1>«Поймай» те черты характера,<br> которые свойственны Лисе <br> в русских народных сказках. </h1>
     <div id="scoreCounter"></div>
     <div id="game-container"></div>
     <div id="notification"></div>
     <img src="img/beresta.png" alt="береста" class="beresta">
     <div class="baba-yaga-image">
         <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
-    </div>
+    <audio id="baba-yaga-sound" src="sound/b15.mp3"></audio>  
+    </div> 
     <img src="img/fox.png" alt="мешок" id="meshok">
     <div class="buttons">
         <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
         <a href="page2.html" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
+    </div>
+    <div id="overlay1">
+        <div id="helpContent">
+            <p class="zagl"><b>А вот и подсказка!</b><br>
+                </p><p>
+                <span class="letter">В</span>русских народных сказках одним из персонажей часто является Лиса. И хоть называют ее по-разному - Лиса, Лисичка-сестричка, Лисонька, Лиса Патрикеевна, черты ее характера всегда одинаковы. Лиса, как правило, олицетворяет хитрость, изворотливость, ум. Рыжая красавица с пушистым хвостом своим ласковым голоском водит за нос доверчивых людей и зверей. И при этом Лиса очень расчетлива, мстительна, способна на обман, плутовство и лукавство.
+                
+                </p><br>
+        </div>
     </div>
     <script src="zhiv4.js"></script>
 </body>

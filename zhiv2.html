@@ -5,19 +5,52 @@
     <link rel="stylesheet" href="styleszhiv2.css">
 </head>
 <body>
-    <h1>СОЕДИНИ ЖИВОТНЫХ <br> СОГЛАСНО НАЗВАНИЮ КНИГИ</h1>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
+    <h1>Вспомни названия сказок <br> и объедини животных в пары.</h1>
     <div id="scoreCounter"></div>
     <div id="game-container"></div>
     <div id="notification"></div>
     <img src="img/beresta.png" alt="береста" class="beresta">
     <div class="baba-yaga-image">
         <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
-    </div>
+    <audio id="baba-yaga-sound" src="sound/b13.mp3"></audio>  
+    </div> 
     <div class="buttons">
         <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
         <a href="page2.html" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
     </div>
-    <canvas id="drawingCanvas"></canvas>
+    <div id="overlay1">
+        <div id="helpContent">
+            <p class="zagl"><b>Вспомни, какие животные являются главными героями сказок</b><br>
+                </p><p>
+                <span class="letter">В</span> русских народных сказках есть персонажи, которые встречаются часто и взаимодействуют с множеством других животных. Например, Лиса, Лисичка-сестричка, Лисонька, Лиса Патрикеевна. Лиса, как правило, олицетворяет хитрость, изворотливость, коварство. 
+                <br>Лиса встречается довольно часто, многие сказки связаны с ней. Лиса вступает в отношения с разными животными и птицами, например, в сказке «Лисичка-сестричка и волк» она обманула волка и старика, в сказке «Лиса и журавль» хотела обмануть журавля, но получила плохое отношение в ответ, в сказке «Кот и лиса» лиса вышла замуж за кота, и они вместе с помощью смекалки и находчивости создали себе достойную репутацию среди других животных. 
+                <br>А вот собака и кот в сказках встречается реже, например, в сказке «Кот и лиса» кота выгнали, а он приспособился к месту обитания и так сдружился с лисой, что даже лесные звери стали его бояться. 
+                
+                
+                </p><br>
+        </div>
     <script src="zhiv2.js"></script>
 </body>
 </html>

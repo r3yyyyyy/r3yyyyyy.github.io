@@ -191,6 +191,12 @@ h1 {
 	float: inline-start;
 	margin: 0 10px 0 0;
 }
+p{
+    margin-left: 25px;
+    text-indent:5px;
+    box-decoration-break: clone;
+}
+
 
 
 @keyframes fall {

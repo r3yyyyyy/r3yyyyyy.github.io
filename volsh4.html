@@ -7,9 +7,34 @@
     <link rel="stylesheet" href="stylesvolsh4.css">
 </head>
 <body>
-    <h1>Распредели зачин и концовки в нужные кубки</h1>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
+      
+    <h1>Определи, где зачин, а где концовка сказки. <br> Нажми на правильный вариант и «перенеси» <br> его в соответствующий кубок.</h1>
+    <!--<h2 class="zach">Зачин</h2>
+    <h2 class="konc">Концовка</h2>-->
     <div id="gameArea">
-        <img src="img/volsh4fon.jpeg" alt="Фон с солдатом и печкой" id="backgroundImage">
+        <img src="img/volsh4fon1.jpg" alt="Фон с солдатом и печкой" id="backgroundImage">
         <div id="stoveArea" ondragover="allowDrop(event)" ondrop="drop(event)" class="stoveArea"></div>
         <div id="stoveArea2" ondragover="allowDrop(event)" ondrop="drop(event)" class="stoveArea">
             <!-- Место для третьей зоны -->
@@ -17,7 +42,8 @@
         <img src="img/beresta.png" alt="береста" class="beresta">
         <div class="baba-yaga-image">
             <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
-        </div>
+        <audio id="baba-yaga-sound" src="sound/b10.mp3"></audio>  
+        </div> 
         <div class="buttons">
             <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
             <a href="page2.html" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
@@ -26,6 +52,16 @@
     <div id="scoreCounter"></div>
     <div id="notification" class="hidden"></div>
     <div id="overlay"></div>
+    <div id="overlay1">
+        <div id="helpContent">
+            <p class="zagl"><b>Вспомни определения зачина и концовки сказки.</b><br>
+                </p><p>
+                <span class="letter">З</span>ачин – это начало основной части сказки. Например, «Жили-были старик со старухой...», «В некотором царстве, в некотором государстве жил-был царь...» и так далее.
+                <br><br>
+                <span class="letter">К</span>онцовка – это обязательная заключительная часть народных сказок. Например, «И я там был, мед-пиво пил, по усам текло, а в рот не попало», «Стали они жить-поживать, да добра наживать, «Вот и сказочке конец, а кто слушал молодец!»
+                
+                </p><br>
+        </div>
     <script src="volsh4.js"></script>
 </body>
 </html>

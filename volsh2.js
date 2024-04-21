@@ -1,7 +1,19 @@
 let score = parseInt(sessionStorage.getItem('score')) || 0;
-const correctImages = ['klubok', 'skatert', 'carpet', 'shapka', 'sapogi', 'gusli'];
-const incorrectImages = ['sandali', 'igla','lopatav', 'vedro' ];
+const correctImages = ['klubok', 'kovsam', 'skatsam', 'shapnev', 'gussam', 'sapogskor'];
+const incorrectImages = ['vedron', 'palkasam', 'iglasam', 'krsap'];
 
+const imageCaptions = {
+    'klubok': 'Волшебный клубок',
+    'kovsam': 'Ковер-самолет',
+    'skatsam': 'Скатерть-самобранка',
+    'shapnev': 'Шапка-невидимка',
+    'gussam': 'Гусли-самогуды',
+    'sapogskor': 'Сапоги-скороходы',
+    'vedron': 'Ведро-непроливайка',
+    'palkasam': 'Палка-самокопалка',
+    'iglasam': 'Иголка-самошвейка',
+    'krsap': 'Летающие сандали'
+};
 
 let userSelection = []; // Хранит выбранные изображения
 
@@ -54,6 +66,12 @@ function addImageToField(imageName, fieldWidth, fieldHeight, imageSize, occupied
     cloudImg.className = 'cloudImage';
     animalWithCloud.insertBefore(cloudImg, img);
 
+    // Создаем элемент для надписи
+    let nameText = document.createElement('div');
+    nameText.className = 'animalName';
+    nameText.textContent = imageCaptions[imageName]; // Получаем надпись из объекта по названию изображения
+    animalWithCloud.appendChild(nameText); // Добавляем надпись над изображением
+
     animalField.appendChild(animalWithCloud);
     img.addEventListener('click', imageClick);
 }
@@ -73,7 +91,7 @@ function imageClick(event) {
             }, 500);
             
             if (userSelection.length === correctImages.length) {
-                showNotification("Поздравляем! Вы правильно выбрали все изображения.");
+                showNotification("Поздравляем! Ты правильно выбрал все изображения.",true);
                 setTimeout(() => {
                     window.location.href = 'volsh3.html';
                 }, 2000);
@@ -83,7 +101,7 @@ function imageClick(event) {
             }
         }
     } else if (incorrectImages.includes(imageName)) {
-        showNotification("Неправильное изображение. Попробуйте еще раз!");
+        showNotification("Неправильное изображение. Попробуй еще раз!", false);
     }
 }
 
@@ -120,14 +138,19 @@ function updateScore() {
     sessionStorage.setItem('score', score);
 }
 
-function showNotification(message) {
+function showNotification(message, isCorrect) {
     const notification = document.getElementById('notification');
     notification.textContent = message;
-    notification.style.display = 'block';
+    notification.style.display = 'block'; // Показываем уведомление
+    
+    // Добавляем класс в зависимости от типа уведомления
+    notification.className = isCorrect ? 'correct-notification' : 'incorrect-notification';
+
     setTimeout(() => {
-        notification.style.display = 'none';
+        notification.style.display = 'none'; // Скрываем уведомление после 3 секунд
     }, 3000);
 }
+
 
 function getRandomPosition(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -141,3 +164,48 @@ function checkOverlap(newPosition, occupiedPositions, size) {
                newPosition.y + size > pos.y;
     });
 }
+document.getElementById("helpButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay1").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay1");
+    var helpContent = document.getElementById("helpContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay1").addEventListener("click", function(event) {
+    document.getElementById("overlay1").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("helpContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
+});

@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.style.border = 'none';
                 } else {
                     selectedLeftAnimalId = this.id;
-                    this.style.border = '2px solid blue';
+                    this.style.border = '4px solid blue';
                 }
             });
         } else if (animal.side === 'center') {
@@ -99,12 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         this.style.border = 'none';
                     } else {
                         selectedCenterAnimalId = this.id;
-                        this.style.border = '2px solid blue';
+                        this.style.border = '4px solid blue';
                         checkConnection();
                     }
                 } else if (selectedLeftAnimalId !== null) {
                     selectedCenterAnimalId = this.id;
-                    this.style.border = '2px solid blue';
+                    this.style.border = '4px solid blue';
                 }
             });
             
@@ -126,12 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         this.style.border = 'none';
                     } else {
                         selectedRightAnimalId = this.id;
-                        this.style.border = '2px solid blue';
+                        this.style.border = '4px solid blue';
                         checkConnection();
                     }
                 } else if (selectedCenterAnimalId !== null) {
                     selectedRightAnimalId = this.id;
-                    this.style.border = '2px solid blue';
+                    this.style.border = '4px solid blue';
                 }
             });
         }
@@ -147,9 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const rightCorrectPairs = rightAnimal.dataset.correctPairs.split(',');
 
         if (leftCorrectPairs.includes(centerAnimal.id) && centerCorrectPairs.includes(rightAnimal.id)) {
-            leftAnimal.style.border = '2px solid green';
-            centerAnimal.style.border = '2px solid green';
-            rightAnimal.style.border = '2px solid green';
+            leftAnimal.style.border = '8px solid green';
+            centerAnimal.style.border = '8px solid green';
+            rightAnimal.style.border = '8px solid green';
 
             const taleKey = selectedLeftAnimalId + '_' + selectedCenterAnimalId + '_' + selectedRightAnimalId;
             const fairyTale = fairyTales[taleKey];
@@ -169,10 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 2000);
             }
         } else {
-            leftAnimal.style.border = '2px solid red';
-            centerAnimal.style.border = '2px solid red';
-            rightAnimal.style.border = '2px solid red';
-            infoText.innerText = 'Неправильное сочетание, пожалуйста, попробуйте еще раз';
+            leftAnimal.style.border = '4px solid red';
+            centerAnimal.style.border = '4px solid red';
+            rightAnimal.style.border = '4px solid red';
+            infoText.innerText = 'Неправильное сочетание, попробуй еще раз.';
+            infoContainer.style.border = '2px solid red';
+            infoText.style.marginLeft = '10'; // Установка margin-left в 0
+            infoText.style.textIndent = '0'; // Установка text-indent в 0
             infoContainer.style.display = 'block';
             setTimeout(() => {
                 infoContainer.style.display = 'none';
@@ -235,4 +238,23 @@ document.getElementById("overlay1").addEventListener('click', function(event) {
 
 document.getElementById("helpContent").addEventListener('click', function(event) {
     event.stopPropagation();
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
 });

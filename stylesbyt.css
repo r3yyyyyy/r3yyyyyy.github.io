@@ -134,14 +134,16 @@ body, html {
     display: none;
     position: fixed;
     top: 50%;
-    left: 50%;
+    left: 48%;
     transform: translate(-50%, -50%);
     background-color: #f0dbbd;
     color: #333;
     padding: 20px;
-    border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     z-index: 101;
+    border-radius: 5%;
+    font-size: 30px;
+    text-align: center;
 }
 .success, .failure {
     padding: 10px;
@@ -297,7 +299,18 @@ h1 {
 	float: inline-start;
 	margin: 0 10px 0 0;
 }
-@media screen and (max-width: 1800px) {
+p{
+    margin-left: 25px;
+    text-indent:5px;
+    box-decoration-break: clone;
+}
+
+@media screen and (max-width: 1800px) and (max-height: 700px) {
+    #gameArea {
+        position: relative;
+        width: 90%;
+        height: 100vh;
+    }
     .input-fields input {
         width: 130px;
         height: 30px;
@@ -336,15 +349,39 @@ h1 {
     }
     .tool {
         position: relative;
-        width: 110px;
-        height: 110px;
+        right: 200px;
+        width: 80px;
+        height: 80px;
         cursor: grab;
         z-index: 10;
         border-radius: 25%;
         background-color: rgba(187, 187, 187, 0.661); /* Полупрозрачный серый фон */
         overflow: hidden; /* добавлено */
     }
-    
+    img#tool1.tool{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
+    #tool2{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
+    #tool3{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
+    #tool4{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
+    #tool5{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
+    #tool6{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
+    #tool7{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
+    #tool8{
+        position: absolute; left: 1022.22px !important; top: 350.545px; transform: translate(-50%, 50%);
+    }
     .tool img {
         width: 100%; /* устанавливаем ширину изображения 100% от контейнера */
         height: 100%; /* устанавливаем высоту изображения 100% от контейнера */
@@ -358,8 +395,8 @@ h1 {
     }
     .tool.dragging {
         opacity: 0.5;
-        width: 90px; /* Или другой размер, который вы считаете подходящим */
-        height: 90px;
+        width: 60px; /* Или другой размер, который вы считаете подходящим */
+        height: 60px;
         position: absolute;
     }
     #stoveArea {

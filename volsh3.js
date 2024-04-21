@@ -1,4 +1,4 @@
-const score = parseInt(sessionStorage.getItem('score')) || 0;
+let score = parseInt(sessionStorage.getItem('score')) || 0;
 
 updateScore();
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fairyTales = {
         'one_oneone': { name: 'Гуси-Лебеди' },
         'two_twotwo': { name: 'Гуси-Лебеди' },
-        'three_threethre': { name: 'Сестрица Алёнушка и братец Иванушка' },
+        'three_threethree': { name: 'Сестрица Алёнушка и братец Иванушка' },
         'four_fourfour': { name: 'Иван-царевич и Серый Волк' },
         'five_fivefive': { name: 'Царевна-лягушка' }
     };
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'five', side: 'left', text: '', correctPairs: ['fivefive'] },
         { id: 'oneone', side: 'right', text: 'Мышка', correctPair: 'one' },
         { id: 'twotwo', side: 'right', text: 'Девочка', correctPair: 'two' },
-        { id: 'threethree', side: 'right', text: 'Иванушка', correctPair: 'three' },
-        { id: 'fourfour', side: 'right', text: 'Волк', correctPair: 'four' },
-        { id: 'fivefive', side: 'right', text: 'Царевна-Лягушка', correctPair: 'five' }
+        { id: 'threethree', side: 'right', text: 'Козлёночек', correctPair: 'three' },
+        { id: 'fourfour', side: 'right', text: 'Серый Волк', correctPair: 'four' },
+        { id: 'fivefive', side: 'right', text: 'Василиса Премудрая', correctPair: 'five' }
     ];
 
     let selectedAnimalId = null;
@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (correctPairs.includes(selectedAnimalId)) {
                     this.style.border = '2px solid green';
                     document.getElementById(selectedAnimalId).style.border = '2px solid green';
+                    infoContainer.style.border = '2px solid green';
                     const taleKey = selectedAnimalId + '_' + this.id;
                     const fairyTale = fairyTales[taleKey];
                     if (fairyTale) {
@@ -98,12 +99,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (correctConnections === 5) {
                         setTimeout(() => {
                             window.location.href = 'volsh4.html';
+                            score++;
+                            updateScore();
                         }, 2000); // Здесь 1000 миллисекунд (1 секунда) - время ожидания перед переходом
                     }
                 } else {
                     this.style.border = '2px solid red';
                     document.getElementById(selectedAnimalId).style.border = '2px solid red';
-                    infoText.innerText = 'Неправильное сочетание, пожалуйста, попробуйте еще раз';
+                    infoText.innerText = 'Неправильное сочетание, попробуй еще раз.';
+                    infoContainer.style.border = '2px solid red';
+                    infoText.style.marginLeft = '10'; // Установка margin-left в 0
+                    infoText.style.textIndent = '0'; // Установка text-indent в 0
                     infoContainer.style.display = 'block';
                     setTimeout(() => {
                         infoContainer.style.display = 'none';
@@ -144,3 +150,48 @@ function updateScore() {
     scoreText.textContent = score;
     sessionStorage.setItem('score', score);
 }
+document.getElementById("helpButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay1").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay1");
+    var helpContent = document.getElementById("helpContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay1").addEventListener("click", function(event) {
+    document.getElementById("overlay1").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("helpContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
+});

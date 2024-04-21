@@ -60,13 +60,13 @@ function animalClick(ev) {
             ev.target.parentElement.remove();
             showAnimalAtDoor(ev.target.src); // Показываем животное у двери
         }, 500);
-        score++;
-        updateScore(); // Обновляем счет
         if (userOrder.length === correctOrder.length) {
             // Все животные выбраны правильно
-            showNotification("Поздравляем! Вы правильно упорядочили животных.");
+            showNotification("Поздравляем! Ты правильно упорядочил животных.", true);
             setTimeout(function() {
                 window.location.href = 'zhiv2.html';
+                score++;
+                updateScore(); // Обновляем счет
             }, 2000);
             userOrder = [];
             sessionStorage.setItem('score', 0); // Сбрасываем счет
@@ -74,7 +74,7 @@ function animalClick(ev) {
         
     } else {
         // Выбрано неправильное животное
-        showNotification("Неправильный порядок. Попробуйте еще раз!");
+        showNotification("Неправильный порядок. Попробуй еще раз!", false);
     }
 }
 
@@ -113,14 +113,19 @@ function updateScore() {
     sessionStorage.setItem('score', score); // Update the score in session storage
 }
 // Функция для отображения уведомлений на экране
-function showNotification(message) {
+function showNotification(message, isCorrect) {
     const notification = document.getElementById('notification');
     notification.textContent = message;
     notification.style.display = 'block'; // Показываем уведомление
+    
+    // Добавляем класс в зависимости от типа уведомления
+    notification.className = isCorrect ? 'correct-notification' : 'incorrect-notification';
+
     setTimeout(() => {
         notification.style.display = 'none'; // Скрываем уведомление после 3 секунд
     }, 3000);
 }
+
 
 function getRandomPosition(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -133,3 +138,48 @@ function checkOverlap(newPosition, occupiedPositions, size) {
                newPosition.y + size > pos.y;
     });
 }
+document.getElementById("helpButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay1").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay1");
+    var helpContent = document.getElementById("helpContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay1").addEventListener("click", function(event) {
+    document.getElementById("overlay1").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("helpContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
+});

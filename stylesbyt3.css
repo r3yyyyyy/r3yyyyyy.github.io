@@ -50,6 +50,10 @@ body, html {
     padding: 20px;
     border-radius: 5px;
     display: none;
+    height:40px;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 25px;
 }
 
 #helpButton {
@@ -277,8 +281,11 @@ h1 {
     transform: translate(-50%, -50%);
     border: 1px solid black;
     background-color: #f0dbbd;
+    border-radius: 5%;
+    width: auto;
     padding: 10px;
-    width: 200px;
+    text-align: center;
+    font-size: 30px;
     text-align: center;
 }
 .infoimage{
@@ -323,5 +330,13 @@ h1 {
 	float: inline-start;
 	margin: 0 10px 0 0;
 }
+p{
+    margin-left: 25px;
+    text-indent:5px;
+    box-decoration-break: clone;
+}
+
+
+
 
 

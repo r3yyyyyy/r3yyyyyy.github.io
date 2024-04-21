@@ -1,13 +1,14 @@
+let score = parseInt(sessionStorage.getItem('score')) || 0;
+updateScore();
 // Слова для ловли и неловли
 const catchWords = ["хитрая", "плутовка", "ласково говорит", "обманщица", "расчетливая", "умная", "мстительная", "красивая", "изворотливая"];
-const avoidWords = ["честная", "добрая", "смешная", "спокойная", "глупая", "медлительная"]
+const avoidWords = ["честная", "добрая", "смешная", "спокойная", "глупая", "медлительная"];
 
 // Получаем элементы DOM
 const gameContainer = document.getElementById('game-container');
 const scoreCounter = document.getElementById('scoreCounter');
 const meshok = document.getElementById('meshok');
 
-let score = 0;
 let words = [];
 let usedCatchWords = [];
 
@@ -84,11 +85,21 @@ function checkCollision() {
         ) {
             const word = wordElement.textContent;
             if (catchWords.includes(word)) {
-                score++;
-                updateScore();
+                removeWord(wordElement);
+                if (!usedCatchWords.includes(word)) {
+                    usedCatchWords.push(word);
+                }
+                if (usedCatchWords.length === 9) { // Проверяем, достигнут ли лимит пойманных слов
+                    window.location.href = 'page2.html'; // Переходим на следующую страницу
+                    score++; // Увеличиваем счет при пойманном правильном слове
+                    updateScore();
+                }
+            } else {
+                // Если слово неправильное, не засчитываем его, просто удаляем
+                removeWord(wordElement);
             }
-            removeWord(wordElement);
         } else if (wordRect.top > window.innerHeight) {
+            // Если слово упало мимо мешка, удаляем его
             removeWord(wordElement);
         }
     });
@@ -117,7 +128,7 @@ function createWord() {
     }
 
     // Добавляем анимацию движения слова
-    const animationDuration = 4.5;
+    const animationDuration = 3;
     wordElement.style.animation = `fall ${animationDuration}s linear`;
 
     // Удаление слова после завершения анимации
@@ -127,15 +138,50 @@ function createWord() {
 }
 
 // Запускаем создание новых слов каждые 2 секунды
-const wordInterval = setInterval(createWord, 5500);
+const wordInterval = setInterval(createWord, 3500);
 
 // Проверяем условие завершения игры каждую секунду
-const gameInterval = setInterval(() => {
-    if (score === catchWords.length) {
-        clearInterval(wordInterval);
-        clearInterval(gameInterval);
-        window.location.href = 'zhiv5.html';
+document.getElementById("helpButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay1").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay1");
+    var helpContent = document.getElementById("helpContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
     }
-}, 2000);
+});
 
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay1").addEventListener("click", function(event) {
+    document.getElementById("overlay1").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
 
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("helpContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
+});

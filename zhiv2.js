@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'crane', side: 'right', src: 'img/zhyravl.png', correctPair: 'fox' },
         { id: 'sobaka', side: 'right', src: 'img/sobaka2.png', correctPair: 'petyh' },
         { id: 'wolf', side: 'right', src: 'img/wolf2.png', correctPair: 'fox' },
-        { id: 'fox2', side: 'right', src: 'img/fox1.png', correctPair: 'kot' }
+        { id: 'fox2', side: 'right', src: 'img/fox2.png', correctPair: 'kot' }
     ];
 
     let selectedAnimalId = null;
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (correctPairs.includes(selectedAnimalId)) {
                     this.style.border = '2px solid green';
                     document.getElementById(selectedAnimalId).style.border = '2px solid green';
+                    infoContainer.style.border = '2px solid green';
                     const taleKey = selectedAnimalId + '_' + this.id;
                     const fairyTale = fairyTales[taleKey];
                     if (fairyTale) {
@@ -69,11 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Если совершено 5 правильных соединений, перенаправляем на страницу byt5.html
                         setTimeout(() => {
                             window.location.href = 'zhiv3.html';
+                            score++;
+                            updateScore();
                         }, 2000); // Ожидаем 1 секунду перед перенаправлением
                     }
                 } else {
                     this.style.border = '2px solid red';
                     document.getElementById(selectedAnimalId).style.border = '2px solid red';
+                    infoContainer.style.border = '2px solid red';
                     // Если пара неправильная, очищаем текст и скрываем контейнер
                     infoText.innerText = '';
                     infoImage.style.display='none';
@@ -99,7 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showErrorMessage() {
-        infoText.innerText = 'Неправильное сочетание, пожалуйста, попробуйте еще раз';
+        infoText.innerText = 'Неправильное сочетание, попробуй еще раз.';
+        infoText.style.marginLeft = '0'; // Установка margin-left в 0
+        infoText.style.textIndent = '0'; // Установка text-indent в 0
         infoContainer.style.display = 'block';
         setTimeout(() => {
             infoContainer.style.display = 'none';
@@ -124,3 +130,48 @@ function updateScore() {
     scoreText.textContent = score;
     sessionStorage.setItem('score', score);
 }
+document.getElementById("helpButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay1").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay1");
+    var helpContent = document.getElementById("helpContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay1").addEventListener("click", function(event) {
+    document.getElementById("overlay1").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("helpContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
+});

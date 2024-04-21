@@ -7,6 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
     <div class="container">
         <img src="img/lenta1.png" alt="" width="1000px">
         <br>

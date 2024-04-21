@@ -1,3 +1,5 @@
+let score = parseInt(sessionStorage.getItem('score')) || 0;
+updateScore();
 // Функция для отображения уведомления
 function showNotification(message, isSuccess) {
     const overlay = document.getElementById('overlay');
@@ -19,8 +21,6 @@ function showNotification(message, isSuccess) {
     }, 1000);
 }
 
-const score = parseInt(sessionStorage.getItem('score')) || 0;
-updateScore();
 const wordsFirstZone = [
     { text: 'Жил-был царь', zone: 'first' },
     { text: 'Жил-был старик, и было у его три сына', zone: 'first' },
@@ -64,7 +64,7 @@ function showNextWord() {
         document.body.appendChild(wordElement);
         allWords.splice(randomIndex, 1); // Удаляем показанную фразу из массива
     } else {
-        showNotification('Вы завершили игру!', true);
+        showNotification('Ты прошел уровень!', true);
         setTimeout(() => {
             window.location.href = 'volsh5.html';
             score++;
@@ -83,7 +83,7 @@ function createWordElement(text, zone) {
     toolElement.classList.add('tool');
     toolElement.style.position = 'absolute';
     toolElement.style.top = '250px';
-    toolElement.style.left = '860px';
+    toolElement.style.left = '830px';
     toolElement.setAttribute('draggable', 'true');
     toolElement.addEventListener('dragstart', dragStart);
     toolElement.addEventListener('dragend', dragEnd);
@@ -137,10 +137,54 @@ function drop(event) {
             showNotification('Неверно', false); // Отображаем уведомление о неверном ответе
             // Возвращаем фразу на исходное место
             toolElement.style.top = '250px';
-            toolElement.style.left = '860px';
+            toolElement.style.left = '830px';
         }
     }
 }
+document.getElementById("helpButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay1").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay1");
+    var helpContent = document.getElementById("helpContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay1").addEventListener("click", function(event) {
+    document.getElementById("overlay1").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("helpContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
+});
 
 function updateScore() {
     let scoreCounter = document.getElementById('scoreCounter');
@@ -160,6 +204,7 @@ function updateScore() {
     scoreText.textContent = score;
     sessionStorage.setItem('score', score);
 }
+
 
 // Начинаем игру при загрузке страницы
 window.onload = startGame;

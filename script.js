@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const inputContainer = document.querySelector('.input-fields');
-    const validValues = ['о животных', 'бытовая', 'волшебная'];
+    const validValues = ['о животных', 'бытовые', 'волшебные'];
 
     restoreState();
     updateEventListeners();
@@ -85,13 +85,86 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'о животных':
                 pageUrl = 'zhiv1.html';
                 break;
-            case 'бытовая':
+            case 'бытовые':
                 pageUrl = 'byt1.html';
                 break;
-            case 'волшебная':
+            case 'волшебные':
                 pageUrl = 'volsh1.html';
                 break;
         }
         window.location.href = pageUrl;
     }
+});
+// Обработчик события для открытия overlay1 при клике на кнопку helpButton
+document.getElementById("helpButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay1").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay1");
+    var helpContent = document.getElementById("helpContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay1").addEventListener("click", function(event) {
+    document.getElementById("overlay1").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("helpContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+
+// Обработчик события для открытия overlay2 при клике на кнопку anotherButton
+document.getElementById("infoButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("overlay2").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Добавляем обработчик события для скрытия overlay2 при клике на любую область кроме content2
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay2");
+    var content = document.getElementById("content2");
+    if (event.target !== content && !content.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay2 при клике на сам overlay2
+document.getElementById("overlay2").addEventListener("click", function(event) {
+    document.getElementById("overlay2").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay2 при клике внутри content2
+document.getElementById("infoContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
 });

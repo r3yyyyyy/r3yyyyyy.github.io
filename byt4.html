@@ -5,6 +5,28 @@
     <link rel="stylesheet" href="stylesbyt4.css">
 </head>
 <body>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
     <h1>Нажми на «нотку», прослушай <br>фразу и соотнеси ее с персонажем.</h1>
     <div id="scoreCounter"></div>
     <div id="game-container"></div>
@@ -12,15 +34,16 @@
     <img src="img/beresta.png" alt="береста" class="beresta">
     <div class="baba-yaga-image">
         <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
-    </div>
+    <audio id="baba-yaga-sound" src="sound/b5.mp3"></audio>       
+                </div>
     <div class="buttons">
         <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
         <a href="#" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
     </div>
     <div id="overlay1">
         <div id="helpContent">
-            <p class="zagl">Чтобы ответить на вопрос квеста, вспомни текст сказки.<br>
-                У страха глаза велики</p><p>
+            <p class="zagl"><b>Чтобы ответить на вопрос квеста, вспомни текст сказки.<br><br>
+                У страха глаза велики</b></p><p>
                 <span class="letter">Ж</span>или-были бабушка-старушка, внучка-хохотушка, курочка-клохтушка и мышка-норушка.<br>
                 Каждый день они ходили за водой. У бабушки были вёдра большие, у внучки — поменьше, у курочки — с огурчик, у мышки — с напёрсточек.<br>
                 Бабушка брала воду из колодца, внучка — из колоды, курочка — из лужицы, а мышка — из следа от поросячьего копытца.<br>

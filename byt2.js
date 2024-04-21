@@ -62,7 +62,7 @@ function animalClick(ev) {
         }, 500);
         if (userOrder.length === correctOrder.length) {
             // Все животные выбраны правильно
-            showNotification("Поздравляем! Вы правильно упорядочили животных.");
+            showNotification("Поздравляем! Ты правильно упорядочил персонажей.", true);
             setTimeout(function() {
                 window.location.href = 'byt3.html';
                 score++;
@@ -74,7 +74,7 @@ function animalClick(ev) {
         
     } else {
         // Выбрано неправильное животное
-        showNotification("Неправильный порядок. Попробуйте еще раз!");
+        showNotification("Неправильный порядок. Попробуй еще раз!", false);
     }
 }
 
@@ -162,10 +162,14 @@ function updateScore() {
     sessionStorage.setItem('score', score); // Update the score in session storage
 }
 // Функция для отображения уведомлений на экране
-function showNotification(message) {
+function showNotification(message, isCorrect) {
     const notification = document.getElementById('notification');
     notification.textContent = message;
     notification.style.display = 'block'; // Показываем уведомление
+    
+    // Добавляем класс в зависимости от типа уведомления
+    notification.className = isCorrect ? 'correct-notification' : 'incorrect-notification';
+
     setTimeout(() => {
         notification.style.display = 'none'; // Скрываем уведомление после 3 секунд
     }, 3000);
@@ -206,4 +210,24 @@ document.getElementById("overlay1").addEventListener("click", function(event) {
 // Предотвращаем закрытие overlay1 при клике внутри helpContent
 document.getElementById("helpContent").addEventListener("click", function(event) {
     event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var babaYagaImage = document.getElementById('baba-yaga-image1');
+    var babaYagaSound = document.getElementById('baba-yaga-sound');
+    
+    // Устанавливаем громкость звука
+    babaYagaSound.volume = 0.2;
+    
+    // Добавляем обработчик события клика на изображение "Баба Яга"
+    babaYagaImage.addEventListener('click', function() {
+        // Проверяем, играет ли звук в данный момент, и приостанавливаем его, если да
+        if (!babaYagaSound.paused) {
+            babaYagaSound.pause();
+            babaYagaSound.currentTime = 0; // Сбрасываем время воспроизведения звука
+        }
+        
+        // Воспроизводим звук "Баба Яга"
+        babaYagaSound.play();
+    });
 });

@@ -7,18 +7,42 @@
     <link rel="stylesheet" href="stylesbyt.css">
 </head>
 <body>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
     <h1>Из чего солдат варил кашу <br> в русской народной сказке?  <br>Нажми и «перетяни» ингредиенты в котелок.</h1>
     <div id="gameArea">
         <img src="img/byt1fon2.webp" alt="Фон с солдатом и печкой" id="backgroundImage">
         <div id="stoveArea" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
         <img src="img/beresta.png" alt="береста" class="beresta">
         <div class="baba-yaga-image">
-            <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+          <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+      <audio id="baba-yaga-sound" src="sound/b2.mp3"></audio>       
         </div>
+        <audio id="baba-yaga-sound" src="sound/b2.mp3"></audio>        
         <div id="overlay1">
             <div id="helpContent">
-                <p class="zagl">Чтобы ответить на вопрос квеста, вспомни текст сказки.<br>
-                    Каша из топора</p><p>
+                <p class="zagl"><b>Чтобы ответить на вопрос квеста, вспомни текст сказки.<br><br>
+                    Каша из топора</b></p><p>
                     <span class="letter">Ш</span>ёл солдат на побывку. Притомился в пути, есть хочется. Дошёл до деревни, постучал в крайнюю избу:<br>
                     — Пустите отдохнуть дорожного человека!<br>
                     Дверь открыла старуха:<br>

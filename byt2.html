@@ -5,6 +5,28 @@
     <link rel="stylesheet" href="stylesbyt2.css">
 </head>
 <body>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
     <h1>«Выбери» персонажей в том порядке, <br> в каком они тянули репку. <br> Для этого наведи курсор <br> и нажми левую клавишу мыши.</h1>
 <div id="scoreCounter"></div>
 
@@ -18,8 +40,9 @@
 
 <div id="notification"></div>
 <img src="img/beresta.png" alt="береста" class="beresta">
-            <div class="baba-yaga-image">
-                <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+<div class="baba-yaga-image">
+    <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+<audio id="baba-yaga-sound" src="sound/b3.mp3"></audio>       
             </div>
             <div class="buttons">
                 <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
@@ -27,8 +50,8 @@
             </div>
             <div id="overlay1">
                 <div id="helpContent">
-                    <p class="zagl">Чтобы определить правильный порядок персонажей, вспомни текст сказки.<br>
-                        Репка</p><p>
+                    <p class="zagl"><b>Чтобы определить правильный порядок персонажей, вспомни текст сказки.<br><br>
+                        Репка</b></p><p>
                         <span class="letter">П</span>осадил дед репку — выросла репка большая-пребольшая.<br>
                         Стал дед репку из земли тащить: тянет-потянет, вытянуть не может.<br>
                         Позвал дед на помощь бабку. Бабка за дедку, дедка за репку: тянут-потянут, вытянуть не могут.<br>

@@ -5,7 +5,29 @@
     <link rel="stylesheet" href="stylesvolsh2.css">
 </head>
 <body>
-    <h1>НАЖМИ НА ВОЛШЕБНЫЕ ПРЕДМЕТЫ <br> И ОНИ <br> ОКАЖУТСЯ В СУНДУКЕ</h1>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
+    <h1>Собери волшебные предметы <br> в волшебный сундук.</h1>
 <div id="scoreCounter"></div>
 
 <div id="animalField">
@@ -18,14 +40,24 @@
 
 <div id="notification"></div>
 <img src="img/beresta.png" alt="береста" class="beresta">
-            <div class="baba-yaga-image">
-                <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
-            </div>
+<div class="baba-yaga-image">
+    <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+<audio id="baba-yaga-sound" src="sound/b8.mp3"></audio>  
+</div> 
             <div class="buttons">
                 <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
                 <a href="page2.html" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
             </div>
-
+            <div id="overlay1">
+                <div id="helpContent">
+                    <p class="zagl"><b>Вспомни, какие предметы в сказках могут быть волшебными</b><br>
+                        </p><p>
+                        <span class="letter">В</span>олшебные предметы – это обычные для человека вещи, которыми пользуется человек в реальной жизни, но эти вещи наделены волшебной силой.
+                        Примеры: скатерть-самобранка, ковер-самолет, сапоги-скороходы, шапка-невидимка, меч-кладенец, волшебный клубок. 
+                        Только не перепутай их с выдуманными предметами, которые хотелось бы, конечно, иметь, вот только в сказках они не встречаются.
+                        
+                        </p><br>
+                </div>
 <script src="volsh2.js"></script>
 </body>
 </html>

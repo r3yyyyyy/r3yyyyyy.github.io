@@ -7,22 +7,62 @@
     <link rel="stylesheet" href="styleszhiv3.css">
 </head>
 <body>
-    <h1>Перетащи старые слова в словаь знаний</h1>
+    <audio id="backgroundMusic" loop autoplay style="display: none;">
+        <source src="sound/fon1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('backgroundMusic');
+        
+        // Устанавливаем громкость
+        audioElement.volume = 0.05;
+        
+        // Обработчик клика для воспроизведения/паузы аудио
+        document.addEventListener('click', function() {
+          if (audioElement.paused) {
+            audioElement.play();
+          }
+        });
+      });
+      </script>
+      
+      
+    <h1>Вспомни, что обозначают<br> устаревшие слова, которые встречаются<br> в русских народных сказках,<br> и перемести их в «Словарь устаревших слов</h1>
     <div id="gameArea">
         <img src="img/zhiv3fon.jpeg" alt="Фон с солдатом и печкой" id="backgroundImage">
         <div id="stoveArea" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
         <img src="img/beresta.png" alt="береста" class="beresta">
         <div class="baba-yaga-image">
             <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
-        </div>
+        <audio id="baba-yaga-sound" src="sound/b14.mp3"></audio>  
+        </div> 
         <div class="buttons">
             <a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>
-            <a href="page2.html" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
+            <a href="#" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
         </div>
     </div>
     <div id="scoreCounter"></div>
     <div id="notification" class="hidden"></div>
     <div id="overlay"></div>
+    <div id="overlay1">
+        <div id="helpContent">
+            <p class="zagl"><b>Вспомни значение перечисленных слов. «Словарь устаревших слов» в скобках оставил для тебя подсказки – пометы.</b><br>
+                </p><p>
+                <b><span class="letter">В</span>едро</b> – это сосуд для хранения жидких и сыпучих материалов и транспортировки их на небольшие расстояния.
+                <br><b>Воз</b> – это колёсная повозка или сани с кладью (устар.).
+                <br><b>Гусельки</b> – это древнерусский струнный музыкальный инструмент (устар.).
+                <br><b>Дом</b> – это постройка, в которой живет человек.
+                <br><b>Изба</b> – это деревянный срубный (бревенчатый) жилой дом в сельской лесистой местности на территории расселения восточных славян (устар.).
+                <br><b>Кадка</b> – это бочка с прямыми боками и одним дном, сделанная из деревянных дощечек и обтянутая металлическими обручами (устар.).
+                <br><b>Корзинка</b> – это плетёное изделие, служащее вместилищем для хранения вещей, для упаковки или переноски.
+                <br><b>Коромысло</b> – это деревянный рычаг для ношения двух ведер с водой или других грузов (устар.).
+                <br><b>Крыльцо</b> – это наружная пристройка (часто крытая) при входе в дом, через которую осуществляется вход и выход из помещения.
+                <br><b>Лукошко</b> – это ручная корзина из лубка и прутьев, предназначенная для сбора ягод и грибов (устар.).
+                </p><br>
+        </div>
+    </div>
     <script src="zhiv3.js"></script>
 </body>
 </html>
