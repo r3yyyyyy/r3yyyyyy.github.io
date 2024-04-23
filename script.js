@@ -1,10 +1,76 @@
+let score = parseInt(sessionStorage.getItem('score')) || 0;
+
+function updateScore() {
+    let scoreCounter = document.getElementById('scoreCounter');
+    if (!document.getElementById('scoreImage')) {
+        let scoreImage = new Image();
+        scoreImage.id = 'scoreImage';
+        scoreImage.src = 'img/apple.png';
+        scoreImage.className = 'scoreImageClass'; // You will define this class in your CSS
+        scoreCounter.appendChild(scoreImage);
+    }
+    let scoreText = document.getElementById('scoreText');
+    if (!scoreText) {
+        scoreText = document.createElement('div');
+        scoreText.id = 'scoreText';
+        scoreCounter.appendChild(scoreText);
+    }
+    scoreText.textContent = score;
+    sessionStorage.setItem('score', score); // Update the score in session storage
+
+    // Проверяем, если значение счета равно 15, отображаем overlay3
+    if (score === 15) {
+        event.preventDefault();
+    document.getElementById("overlay3").style.display = "block";
+    event.stopPropagation(); // Предотвращаем всплытие события
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const inputContainer = document.querySelector('.input-fields');
     const validValues = ['о животных', 'бытовые', 'волшебные'];
 
     restoreState();
     updateEventListeners();
+    updateScore();
 
+    // Проверяем, откуда пришел пользователь
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromPage = urlParams.get('from');
+
+    if (fromPage === 'zhiv5.html') {
+        removeElement('.storybook-button[value="о животных"]');
+        removeInputFields();
+    } else if (fromPage === 'byt5.html') {
+        removeElement('.storybook-button[value="бытовые"]');
+        removeInputFields();
+    } else if (fromPage === 'volsh5.html') {
+        removeElement('.storybook-button[value="волшебные"]');
+        removeInputFields();
+    }
+    
+    function removeElement(selector) {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.remove();
+            saveState(element.value);
+        }
+    }
+    
+    function removeInputFields() {
+        document.querySelectorAll('.input-fields input').forEach(inputField => {
+            inputField.remove();
+        });
+    }
+    
+    function saveState(value) {
+        const hiddenElements = JSON.parse(localStorage.getItem('hiddenElements')) || [];
+        if (!hiddenElements.includes(value)) {
+            hiddenElements.push(value);
+            localStorage.setItem('hiddenElements', JSON.stringify(hiddenElements));
+        }
+    }
+    
     function updateEventListeners() {
         document.querySelectorAll('.input-fields input:not([hidden])').forEach(inputField => {
             inputField.removeEventListener('keypress', handleKeypress);
@@ -92,9 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 pageUrl = 'volsh1.html';
                 break;
         }
-        window.location.href = pageUrl;
+        // Добавляем параметр "from" в URL при переходе на другую страницу
+        const fromPage = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+        window.location.href = `${pageUrl}?from=${fromPage}`;
     }
 });
+
 // Обработчик события для открытия overlay1 при клике на кнопку helpButton
 document.getElementById("helpButton").addEventListener("click", function(event) {
     event.preventDefault();
@@ -168,3 +237,23 @@ document.addEventListener('DOMContentLoaded', function() {
         babaYagaSound.play();
     });
 });
+// Добавляем обработчик события для скрытия overlay1 при клике на любую область кроме helpContent
+document.addEventListener("click", function(event) {
+    var overlay = document.getElementById("overlay3");
+    var helpContent = document.getElementById("congratsContent");
+    if (event.target !== helpContent && !helpContent.contains(event.target)) {
+        overlay.style.display = "none";
+    }
+});
+
+// Обработчик события для закрытия overlay1 при клике на сам overlay1
+document.getElementById("overlay3").addEventListener("click", function(event) {
+    document.getElementById("overlay3").style.display = "none";
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+
+// Предотвращаем закрытие overlay1 при клике внутри helpContent
+document.getElementById("congratsContent").addEventListener("click", function(event) {
+    event.stopPropagation(); // Предотвращаем всплытие события
+});
+

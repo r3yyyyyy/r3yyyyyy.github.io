@@ -112,7 +112,9 @@ function handleDrop(e) {
 
     if (droppedTool && droppedTool.dataset.correct === 'true') {
         droppedTool.dataset.used = 'true';
-
+        const correctSound = document.getElementById('correctSound');
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
         droppedTool.remove();
         const allCorrectToolsUsed = Array.from(document.querySelectorAll('.tool[data-correct="true"]')).every(tool => tool.dataset.used === 'true');
         if (allCorrectToolsUsed) {
@@ -120,6 +122,9 @@ function handleDrop(e) {
         }
     } else {
         droppedTool.remove();
+        const incorrectSound = document.getElementById('incorrectSound');
+                incorrectSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                incorrectSound.play(); // Воспроизводим звук при неправильном слове
         showNotification('НЕВЕРНО. ПОПРОБУЙ ЕЩЕ РАЗ.', false);
     }
 }

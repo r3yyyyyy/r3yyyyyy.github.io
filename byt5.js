@@ -1,5 +1,6 @@
 let score = parseInt(sessionStorage.getItem('score')) || 0;
 updateScore();
+
 // Слова для ловли и неловли
 const catchWords = ["смелость", "смекалка", "находчивость", "доброта", "веселость", "ум", "справедливость", "трудолюбие", "ловкость"];
 const avoidWords = ["скупость", "жадность", "глупость", "трусость", "злость", "богатство", "лень", "корысть", "завистливость", "невежество"];
@@ -32,8 +33,8 @@ function stopDragging(event) {
 // Функция перемещения мешка
 function moveMeshok(event) {
     if (isDragging) {
-        meshok.style.left = `${event.clientX - meshok.offsetWidth / 2}px`;
-        meshok.style.top = `${event.clientY - meshok.offsetHeight / 2}px`;
+        meshok.style.left = `${event.clientX - meshok.offsetWidth / 8}px`;
+        meshok.style.top = `${event.clientY - meshok.offsetHeight / 8}px`;
         checkCollision();
     }
 }
@@ -73,6 +74,8 @@ function updateScore() {
 }
 
 // Проверяем столкновение слова с мешком
+// Проверяем столкновение слова с мешком
+// Проверяем столкновение слова с мешком
 function checkCollision() {
     const meshokRect = meshok.getBoundingClientRect();
     words.forEach(wordElement => {
@@ -85,16 +88,22 @@ function checkCollision() {
         ) {
             const word = wordElement.textContent;
             if (catchWords.includes(word)) {
+                const correctSound = document.getElementById('correctSound');
+                correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                correctSound.play(); // Воспроизводим звук при правильном слове
                 removeWord(wordElement);
                 if (!usedCatchWords.includes(word)) {
                     usedCatchWords.push(word);
                 }
                 if (usedCatchWords.length === 9) { // Проверяем, достигнут ли лимит пойманных слов
-                    window.location.href = 'page2.html'; // Переходим на следующую страницу
+                    window.location.href = 'page2.html?from=byt5.html';
                     score++; // Увеличиваем счет при пойманном правильном слове
                     updateScore();
                 }
             } else {
+                const incorrectSound = document.getElementById('incorrectSound');
+                incorrectSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                incorrectSound.play(); // Воспроизводим звук при неправильном слове
                 // Если слово неправильное, не засчитываем его, просто удаляем
                 removeWord(wordElement);
             }

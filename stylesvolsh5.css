@@ -1,0 +1,362 @@
+@font-face {
+    font-family: 'Triod';
+    src: url('fonts/TriodPostnaja.ttf') format('woff2'), /* Формат WOFF2 */
+         url('fonts/TriodPostnaja.ttf') format('woff'); /* Формат WOFF */
+  
+    font-weight: normal;
+    font-style: normal;
+  }body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Triod', sans-serif;
+  }
+  
+  #gameArea {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  #backgroundImage {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  #scoreCounter {
+    position: absolute;
+    display: inline-block;
+    left: 10px;
+    top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10;
+  }
+  
+  .scoreImageClass {
+    width: 160px; /* Your desired width */
+    /* Other styles to make it look good in your game */
+  }
+  #scoreText {
+    position: absolute;
+    top: 57%; /* adjust if necessary */
+    left: 50%; /* adjust if necessary */
+    transform: translate(-55%, -55%);
+    z-index: 10; /* Ensure it's above the image */
+    color: aliceblue;
+    /* Your styles for the score text */
+  }
+  
+  
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #141414;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #e8e8e8;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  .return-button {
+    margin-top: 10px;
+  }
+  
+  #notification {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    background-color: #f0dbbd;
+    color: #333;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 101;
+    border-radius: 5%;
+    font-size: 30px;
+    text-align: center;
+  }
+  .success, .failure {
+    padding: 10px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    display: block;
+    background-color: #f0dbbd;
+  }
+  
+  .success {
+    border: 2px solid green;
+    color: green;
+  }
+  
+  .failure {
+    border: 2px solid red;
+    color: red;
+  }
+  
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.057);
+    z-index: 1000;
+  }
+  .hidden {
+    display: none;
+  }
+  
+  .notification-visible {
+    display: block;
+  }
+  
+  h1 {
+    font-size: 18px;
+    color: #000000c1;
+    font-family: 'Triod', sans-serif;
+    position: absolute;
+    top: 12vh;
+    right: 11vw;
+    z-index: 3;
+  }
+  
+  #helpButton {
+    position: absolute;
+    bottom: -2vh;
+    left: -0.5vw;
+  }
+  #helpButton1{
+    position: absolute;
+    bottom: -2vh;
+    right: -0.5vw;
+  }
+  .buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: transparent; /* Убираем фоновый цвет */
+    color: #141414;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: transform 0.2s; /* Добавляем анимацию при наведении */
+    position: relative; /* Добавляем относительное позиционирование */
+  }
+  
+  .buttons img {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 180px; /* Устанавливаем ширину изображения */
+    height: auto; /* Сохраняем пропорции */
+  }
+  
+  .buttons a:hover {
+    transform: scale(1.05); /* Увеличиваем кнопку при наведении */
+  }
+  
+  .buttons a span {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Triod', sans-serif; /* Используем шрифт Roboto */
+  }
+  
+  .beresta{
+    width: 600px;
+    height: 180px;
+    position: absolute;
+    top: 7vh;
+    right: 4vw;
+    z-index: 1;
+    transform: scale(-1,1);
+  }
+  .baba-yaga-image {
+    position: absolute;
+    top: -1.2vh;
+    right: -1.2vw;
+    width: 200px; /* Уменьшаем размер изображения Бабы Яги */
+    height: auto;
+    z-index: 2;
+    transform: scale(-1,1);
+  }
+  
+  
+  #baba-yaga-image1{
+    width: 160%;
+  }
+  #overlay1 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  #helpContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    background-image: url(img/berestafon.jfif);
+    padding: 20px;
+    max-width: 80%;
+    overflow-y: auto;
+    max-height: 80%;
+    border-radius: 10px;
+    font-size: 25px;
+  }
+  .zagl{
+    text-align: center !important;
+    font-size: 32px;
+  }
+  .letter {
+  font-family: 'Triod';
+  color: rgba(215, 6, 6, 0.998);    
+  font-size: 70px;
+  line-height: 52px;    
+  vertical-align: top;
+  display: inline-block;
+  float: inline-start;
+  margin: 0 10px 0 0;
+  }
+  p{
+    margin-left: 25px;
+    text-indent:5px;
+    box-decoration-break: clone;
+  }
+  .dropzone {
+    width: 200px;
+    height: 250px;
+    border: 2px solid #ccc;
+    margin: 10px;
+    display: inline-block;
+    background-color: rgba(187, 187, 187, 0.661); /* Полупрозрачный серый фон */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .draggable {
+    padding: 10px;
+    border: 2px solid #ccc;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Растягиваем блоки по ширине и высоте контейнера */
+  }
+  /* Применяем flexbox к контейнерам */
+  
+  
+  .dragging {
+    opacity: 0.5;
+  }
+  
+  .correct {
+    border: 2px solid green;
+  }
+  
+  .incorrect {
+    border: 2px solid red;
+  }
+  /* Стили для заголовка */
+  .container {
+    position: absolute;
+    top: 800px;
+    left: 12%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 60px; /* Высота контейнера */
+    z-index: 20;
+  }
+  
+  /* Стили для каждой группы элементов */
+  .title-group, .hint-group, .image-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Стили для каждого типа элементов */
+  .draggable {
+    margin-bottom: 10px; /* Отступ снизу */
+    background-color: rgba(187, 187, 187, 0.885); /* Полупрозрачный серый фон */
+    z-index: 100;
+    text-align: center;
+  }
+  
+  /* Стили для заголовка */
+  .title-group {
+    width: 200px; /* Ширина элементов */
+    justify-content: flex-start;
+    margin-right: 120px;
+  
+  }
+  
+  /* Стили для подсказки */
+  .hint-group {
+    justify-content: center;
+    width: 300px;
+  
+  }
+  
+  /* Стили для изображения */
+  .image-group {
+    width: 165px; /* Ширина элементов */
+    justify-content: flex-end;
+    margin-left: 120px;
+  
+  }
+  #container1{
+    position: absolute;
+    top: 45%;
+    left: 65%;
+    z-index: 20;
+    align-items: center;
+  }
+  #container2{
+    position: absolute;
+    top: 45%;
+    left: 76%;
+    z-index: 20;
+  }
+  #container3{
+    position: absolute;
+    top: 45%;
+    left: 87%;
+    z-index: 20;
+  }
+  p{
+    text-indent: 5px;
+  }

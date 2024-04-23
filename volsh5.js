@@ -11,18 +11,15 @@ let correctCount = 0; // Счетчик верно собранных блоко
 
 blocks.forEach(block => {
   block.addEventListener('dragstart', (e) => {
-    draggedBlock = e.currentTarget; // Изменено на e.currentTarget
+    draggedBlock = e.target;
     draggedFromContainer = e.target.parentNode; // Сохраняем ссылку на контейнер, из которого перемещен блок
     setTimeout(() => {
       block.classList.add('dragging');
     }, 0);
 
-    // Устанавливаем данные для перетаскивания
-    e.dataTransfer.setData('text/plain', ''); // Пустая строка, так как данные не используются
-
     // Добавляем проверку типа блока при начале перемещения
-    const type = e.currentTarget.dataset.type; // Изменено на e.currentTarget
-    const dropzoneId = e.currentTarget.dataset.containerId; // Изменено на e.currentTarget
+    const type = e.target.dataset.type; // Получаем тип блока
+    const dropzoneId = e.target.dataset.containerId; // Получаем id контейнера, к которому он привязан
 
     // Запрещаем перемещение блока в неподходящие контейнеры
     if (type === 'title' && dropzoneId !== 'container1') {
@@ -48,7 +45,7 @@ dropzones.forEach(dropzone => {
     e.preventDefault();
     if (!draggedBlock) return;
     const type = draggedBlock.dataset.type; // Получаем тип перемещаемого блока
-
+  
     // Проверяем, можно ли переместить блок в данный контейнер
     if (
       (type === 'title' && dropzone.id === 'container1') ||
@@ -60,9 +57,11 @@ dropzones.forEach(dropzone => {
       if (document.querySelectorAll('.dropzone > .draggable').length === 3) {
         checkBlocks();
       }
+  
       // Применяем стили для блока при перемещении
       draggedBlock.style.width = '90%';
       draggedBlock.style.height = '90%';
+      draggedBlock.style.fontSize = '14px';
       draggedBlock.style.top = '50%';
       draggedBlock.style.boxSizing = 'border-box'; // Учитываем padding и border в размере блока
     } else {
@@ -70,6 +69,7 @@ dropzones.forEach(dropzone => {
       draggedFromContainer.appendChild(draggedBlock);
     }
   });
+  
 });
 
 function checkBlocks() {
@@ -135,8 +135,8 @@ function checkBlocks() {
     allBlocks.forEach(block => block.remove());
     dropzones.forEach(dropzone => dropzone.style.border = '2px solid green');
     const correctSound = document.getElementById('correctSound');
-                correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
-                correctSound.play(); // Воспроизводим звук при правильном слове
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
     
     // Увеличиваем счетчик верных ответов
     correctCount++;
@@ -144,7 +144,7 @@ function checkBlocks() {
     // Проверяем, все ли блоки собраны верно
     if (correctCount === 5) {
       // Показываем уведомление о правильном ответе и переходим на следующую страницу
-      showNotification('Верно! Ты молодец!', true);
+      showNotification('Верно!', true);
     }
   }
 }
@@ -163,7 +163,7 @@ function showNotification(message, isSuccess) {
     overlay.style.display = 'none';
     if (isSuccess) {
       // Переадресация пользователя на следующий уровень
-      window.location.href = 'page2.html?from=zhiv5.html';
+      window.location.href = 'page2.html?from=volsh5.html';
       score++;
       updateScore();
     }
@@ -259,13 +259,4 @@ const imageGroup = document.querySelector('.image-group');
 
 titleBlocks.forEach(block => titleGroup.appendChild(block));
 hintBlocks.forEach(block => hintGroup.appendChild(block));
-imageBlocks.forEach(block => {
-  const imageSrc = block.dataset.src;
-  const imgElement = document.createElement('img');
-  imgElement.src = imageSrc;
-  imgElement.width = '120'; // Устанавливаем ширину изображения
-  block.textContent = ''; // Очищаем текстовое содержимое блока
-  block.appendChild(imgElement);
-  imageGroup.appendChild(block);
-});
-
+imageBlocks.forEach(block => imageGroup.appendChild(block));

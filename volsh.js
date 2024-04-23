@@ -11,9 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const characters = [
         { name: 'carevna', image: 'img/carevna.png', id: 'carevna', isMagic: true },
-        { name: 'bura', image: 'img/bura.png', isMagic: true },
-        { name: 'zol', image: 'img/zol.png', isMagic: true },
-        { name: 'carev', image: 'img/carev.png', isMagic: false },
+        { name: 'kolobok', image: 'img/kolobok.png', id: 'kolobok', isMagic: true },
+        { name: 'belka', image: 'img/belka.png', id: 'belka', isMagic: false },
+        { name: 'bura', image: 'img/bura.png', isMagic: false },
+        { name: 'zol', image: 'img/zol.png', isMagic: false },
+        { name: 'carev', image: 'img/carev.png', isMagic: true },
         { name: 'leop', image: 'img/leop.png', isMagic: false },
         { name: 'nezn', image: 'img/nezn.png', isMagic: false }
     ];
@@ -74,17 +76,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (leftCharacters.length > 1) {
                     leftCharacters.shift().remove();
                 }
+                const correctSound = document.getElementById('correctSound');
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
             } else {
                 rightArea.appendChild(characterElement);
                 rightCharacters.push(characterElement);
                 if (rightCharacters.length > 1) {
                     rightCharacters.shift().remove();
                 }
+                const correctSound = document.getElementById('correctSound');
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
             }
 
             loadNextCharacter();
         } else {
             showNotification("Неверно. Попробуй еще раз!");
+            const incorrectSound = document.getElementById('incorrectSound');
+                incorrectSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                incorrectSound.play(); // Воспроизводим звук при неправильном слове
         }
     }
 

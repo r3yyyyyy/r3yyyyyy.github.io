@@ -64,7 +64,7 @@ function showNextWord() {
         document.body.appendChild(wordElement);
         allWords.splice(randomIndex, 1); // Удаляем показанную фразу из массива
     } else {
-        showNotification('Ты прошел уровень!', true);
+        showNotification('Правильно! Ты молодец!', true);
         setTimeout(() => {
             window.location.href = 'volsh5.html';
             score++;
@@ -123,6 +123,9 @@ function drop(event) {
             toolElement.removeEventListener('dragend', dragEnd);
             toolElement.classList.remove('tool');
             toolElement.classList.add('invisible');
+            const correctSound = document.getElementById('correctSound');
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
             showNextWord();
         } else if (event.target.id === 'stoveArea2' && zone === 'second') {
             event.target.appendChild(toolElement);
@@ -132,9 +135,15 @@ function drop(event) {
             toolElement.removeEventListener('dragend', dragEnd);
             toolElement.classList.remove('tool');
             toolElement.classList.add('invisible');
+            const correctSound = document.getElementById('correctSound');
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
             showNextWord();
         } else {
-            showNotification('Неверно', false); // Отображаем уведомление о неверном ответе
+            showNotification('Неверно. Попробуй еще раз', false); // Отображаем уведомление о неверном ответе
+            const incorrectSound = document.getElementById('incorrectSound');
+                incorrectSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                incorrectSound.play(); // Воспроизводим звук при неправильном слове
             // Возвращаем фразу на исходное место
             toolElement.style.top = '250px';
             toolElement.style.left = '830px';

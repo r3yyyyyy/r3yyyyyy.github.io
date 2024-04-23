@@ -60,6 +60,9 @@ function animalClick(ev) {
             ev.target.parentElement.remove();
             showAnimalAtDoor(ev.target.src); // Показываем животное у двери
         }, 500);
+        const correctSound = document.getElementById('correctSound');
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
         if (userOrder.length === correctOrder.length) {
             // Все животные выбраны правильно
             showNotification("Поздравляем! Ты правильно упорядочил животных.", true);
@@ -75,6 +78,9 @@ function animalClick(ev) {
     } else {
         // Выбрано неправильное животное
         showNotification("Неправильный порядок. Попробуй еще раз!", false);
+        const incorrectSound = document.getElementById('incorrectSound');
+                incorrectSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                incorrectSound.play(); // Воспроизводим звук при неправильном слове
     }
 }
 

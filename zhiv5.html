@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+  <link rel="stylesheet" href="puzzle.css">
+</head>
+<body>
+  <audio id="correctSound" src="sound/1.mp3"></audio>
+<audio id="incorrectSound" src="sound/0.mp3"></audio>
+
+  <audio id="backgroundMusic" loop autoplay style="display: none;">
+    <source src="sound/fon4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var audioElement = document.getElementById('backgroundMusic');
+    
+    // Устанавливаем громкость
+    audioElement.volume = 0.05;
+    
+    // Обработчик клика для воспроизведения/паузы аудио
+    document.addEventListener('click', function() {
+      if (audioElement.paused) {
+        audioElement.play();
+      }
+    });
+  });
+  </script>
+  
+  
+<h1>Подбери к названию сказки <br>правильную стихотворную подсказку<br> и подходящую иллюстрацию.</h1>
+    <img src="img/zhiv5fon.jpeg" alt="Фон с солдатом и печкой" id="backgroundImage">
+    <div id="stoveArea" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    <img src="img/beresta.png" alt="береста" class="beresta">
+    <div class="baba-yaga-image">
+      <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+  <audio id="baba-yaga-sound" src="sound/b16.mp3"></audio>       
+    </div>
+    <audio id="baba-yaga-sound" src="sound/b16.mp3"></audio>        
+    <div id="overlay1">
+        <div id="helpContent">
+            <p class="zagl"><b>А вот и подсказка!<br><br>
+                </b></p><p>
+                  <table border="1">
+                    <tr>
+                      <th>Сказка</th>
+                      <th>Подсказка</th>
+                      <th>Картинка</th>
+                    </tr>
+                    <tr>
+                      <td>«Петушок — золотой гребешок»</td>
+                      <td>Петушок глядит в окошко, видит россыпи горошка. Под окном сидит лиса, вызывает петушка.</td>
+                      <td><img src="img/petuh.jpg" alt="Петушок глядит в окошко" width="150"></td>
+                    </tr>
+                    <tr>
+                      <td>«Лиса, заяц и петух»</td>
+                      <td>Зайка домик смастерил, зиму в нём спокойно жил. Но весной пришла беда - зайку выгнала лиса.</td>
+                      <td><img src="img/lisa-zayats-petuh.jpg" alt="Зайка домик смастерил" width="150"></td>
+                    </tr>
+                    <tr>
+                      <td>«Теремок»</td>
+                      <td>Среди поля дом стоит, мышка по полю бежит. Постучалась - дом пустой. Быть хозяйкой её самой!</td>
+                      <td><img src="img/teremok.jpg" alt="Среди поля дом стоит" width="150"></td>
+                    </tr>
+                    <tr>
+                      <td>«Волк и Лиса»</td>
+                      <td>Опустил он в прорубь хвост, хвост его ко льду примёрз. А потом немало вёрст на себе лисицу вёз.</td>
+                      <td><img src="img/foxwolf.jpg" alt="Опустил он в прорубь хвост" width="150"></td>
+                    </tr>
+                    <tr>
+                      <td>«Волк и семеро козлят»</td>
+                      <td>Почему, открыв защёлку, в дом пустили злого волка? Потому что хитрый малый голос сделал, как у мамы.</td>
+                      <td><img src="img/volk-kozlyata.jpg" alt="Почему, открыв защёлку" width="150"></td>
+                    </tr>
+                  </table>
+                  
+        </div>
+    </div>
+    <div class="buttons">
+        <!--<a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>-->
+        <a href="#" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
+    </div>
+
+<div id="scoreCounter"></div>
+<div id="notification" class="hidden"></div>
+<div id="overlay"></div>
+  <div class="dropzone" id="container1"></div>
+  <div class="dropzone" id="container2"></div>
+  <div class="dropzone" id="container3"></div>
+  <div class="container">
+    <div class="title-group" style="width: 200px;">
+    <div class="draggable petushok" data-container-id="container1" data-type="title" draggable="true">Петушок — золотой гребешок</div>
+    <div class="draggable lisa-zayats-petuh" data-container-id="container1" data-type="title" draggable="true">Лиса, заяц и петух</div>
+    <div class="draggable teremok" data-container-id="container1" data-type="title" draggable="true">Теремок</div>
+    <div class="draggable volk-lisa" data-container-id="container1" data-type="title" draggable="true">Волк и Лиса</div>
+    <div class="draggable volk-kozlyata" data-container-id="container1" data-type="title" draggable="true">Волк и семеро козлят</div>
+  </div>
+    
+    <div class="hint-group" style="width: 300px;">
+    <div class="draggable petushok" data-container-id="container2" data-type="hint" draggable="true">Петушок глядит в окошко, Видит россыпи горошка. Под окном сидит лиса, Вызывает петушка.</div>
+    <div class="draggable lisa-zayats-petuh" data-container-id="container2" data-type="hint" draggable="true">Зайка домик смастерил, Зиму в нём спокойно жил. Но весной пришла беда - Зайку выгнала лиса.</div>
+    <div class="draggable teremok" data-container-id="container2" data-type="hint" draggable="true">Среди поля дом стоит. Мышка по полю бежит. Постучалась - дом пустой. Быть хозяйкой её самой!</div>
+    <div class="draggable volk-lisa" data-container-id="container2" data-type="hint" draggable="true">Опустил он в прорубь хвост, Хвост его ко льду примёрз, А потом немало вёрст На себе лисицу вёз.</div>
+    <div class="draggable volk-kozlyata" data-container-id="container2" data-type="hint" draggable="true">Почему, открыв защёлку, В дом пустили злого волка? Потому что хитрый малый Голос сделал, как у мамы.</div>
+    </div>
+    
+    <div class="image-group">
+      <div class="draggable petushok" data-container-id="container3" data-type="image" draggable="true" data-src="img/petuh.jpg">
+        <img src="img/petuh.jpg" width="120px" alt="Картинка1">
+      </div>
+      <div class="draggable lisa-zayats-petuh" data-container-id="container3" data-type="image" draggable="true" data-src="img/lisa-zayats-petuh.jpg">
+        <img src="img/lisa-zayats-petuh.jpg" width="120px" alt="Картинка2">
+      </div>
+      <div class="draggable teremok" data-container-id="container3" data-type="image" draggable="true" data-src="img/teremok.jpg">
+        <img src="img/teremok.jpg" width="120px" alt="Картинка3">
+      </div>
+      <div class="draggable volk-lisa" data-container-id="container3" data-type="image" draggable="true" data-src="img/foxwolf.jpg">
+        <img src="img/foxwolf.jpg" width="120px" alt="Картинка4">
+      </div>
+      <div class="draggable volk-kozlyata" data-container-id="container3" data-type="image" draggable="true" data-src="img/volk-kozlyata.jpg">
+        <img src="img/volk-kozlyata.jpg" width="120px" alt="Картинка5">
+      </div>
+    </div>
+     
+  </div>
+  <script src="puzzle.js"></script>
+</body>
+</html>

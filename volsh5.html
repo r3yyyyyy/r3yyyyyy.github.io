@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+  <link rel="stylesheet" href="stylesvolsh5.css">
+</head>
+<body>
+  <audio id="correctSound" src="sound/1.mp3"></audio>
+<audio id="incorrectSound" src="sound/0.mp3"></audio>
+
+  <audio id="backgroundMusic" loop autoplay style="display: none;">
+    <source src="sound/fon4.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var audioElement = document.getElementById('backgroundMusic');
+    
+    // Устанавливаем громкость
+    audioElement.volume = 0.05;
+    
+    // Обработчик клика для воспроизведения/паузы аудио
+    document.addEventListener('click', function() {
+      if (audioElement.paused) {
+        audioElement.play();
+      }
+    });
+  });
+  </script>
+  
+  
+<h1>Подбери к названию сказки <br>правильную стихотворную подсказку<br> и подходящую по смыслу пословицу.</h1>
+    <img src="img/fonvolsh5.jpeg" alt="Фон с солдатом и печкой" id="backgroundImage">
+    <div id="stoveArea" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    <img src="img/beresta.png" alt="береста" class="beresta">
+    <div class="baba-yaga-image">
+      <img src="img/yaga4.png" alt="Баба Яга" id="baba-yaga-image1">
+  <audio id="baba-yaga-sound" src="sound/b11.mp3"></audio>       
+    </div>
+    <audio id="baba-yaga-sound" src="sound/b11.mp3"></audio>        
+    <div id="overlay1">
+        <div id="helpContent">
+            <p class="zagl"><b>Давай вспомним толкование пословиц и поговорок.<br><br>
+                </b></p><p>
+                <b><span class="letter">З</span>а добрые дела добром платят</b> – пословица подразумевает, что если мы поступаем с добротой, помогаем другим или делаем что-то полезное, то в будущем мы сами будем вознаграждены и получим благо.
+              </p><p><b>Кто слушается старшего, нога того о камень не ударится</b> – это значит, что нужно всегда слушать старших и тогда ничего плохого не случится. Старшие желают нам добра и хотят предостеречь от страшного и опасного мира вокруг. 
+              </p><p><b>По одежке встречают, по уму провожают</b> – пословица означает, что первое впечатление о человеке у нас создаётся по его внешности, одежде, голосу, манере поведения, которая сразу бросается в глаза. И только пообщавшись с ним какое-то время, мы можем изменить своё отношение к нему в зависимости от его внутреннего содержания: не только ума, но и душевных качеств.
+              </p><p><b>Большая заслуга – выручить в беде друга</b> – пословица учит дорожить дружбой, оставаться преданными в любых ситуация, тогда, помогая своему другу, - ты можешь рассчитывать и на помощь с его стороны, когда она тебе понадобится.
+              </p><p><b>Одна удача идет, другую ведет</b> – это значит, что если человек счастлив и удача к нему благосклонная, то и неудач у него не будет, будет всегда только белая полоса. 
+                
+        </div>
+    </div>
+    <div class="buttons">
+        <!--<a href="page2.html" id="helpButton1"><img src="img/button2.png" alt="Помощь"> <span>ВЕРНУТЬСЯ</span></a>-->
+        <a href="#" id="helpButton"><img src="img/button2.png" alt="Помощь"> <span>ПОМОЩЬ</span></a>
+    </div>
+
+<div id="scoreCounter"></div>
+<div id="notification" class="hidden"></div>
+<div id="overlay"></div>
+  <div class="dropzone" id="container1"></div>
+  <div class="dropzone" id="container2"></div>
+  <div class="dropzone" id="container3"></div>
+  <div class="container">
+    <div class="title-group" style="width: 200px;">
+    <div class="draggable petushok" data-container-id="container1" data-type="title" draggable="true">«Гуси-лебеди»</div>
+    <div class="draggable lisa-zayats-petuh" data-container-id="container1" data-type="title" draggable="true">«Сестрица Алёнушка и братец Иванушка»</div>
+    <div class="draggable teremok" data-container-id="container1" data-type="title" draggable="true">«Царевна-лягушка»</div>
+    <div class="draggable volk-lisa" data-container-id="container1" data-type="title" draggable="true">«Иван-царевич и Серый Волк»</div>
+    <div class="draggable volk-kozlyata" data-container-id="container1" data-type="title" draggable="true">«По щучьему велению»</div>
+  </div>
+    
+    <div class="hint-group" style="width: 300px;">
+    <div class="draggable petushok" data-container-id="container2" data-type="hint" draggable="true">Печь просила: «Помоги,
+        Съешь ржаные пироги!»
+        Тут и яблонька склонилась:
+        «Скушай яблочко на милость!»
+        Попросила и река:
+        «Ты попробуй берега!»
+        И сестра, спасти чтоб братца,
+        Не посмела отказаться.
+        </div>
+    <div class="draggable lisa-zayats-petuh" data-container-id="container2" data-type="hint" draggable="true">Нет ни речки, ни пруда -
+        Где воды напиться?
+        Очень вкусная вода
+        В ямке от копытца!..
+        </div>
+    <div class="draggable teremok" data-container-id="container2" data-type="hint" draggable="true">Лук и стрелы братьям дали,
+        Чтоб невесту выбирали:
+        Им стрела укажет место,
+        Где она — там и невеста.
+        Старшим братьям повезло:
+        Каждый угодил в крыльцо.
+        Младшему, хоть неохота
+        Брать невесту из болота,
+        Но пришлось. Сам царь-отец
+        Их отправил под венец.
+        </div>
+    <div class="draggable volk-lisa" data-container-id="container2" data-type="hint" draggable="true">Он служил Ивану рьяно,
+        Помогал во всём Ивану,
+        Заменял ему коня,
+        Дружбе верность сохраня,
+        Воскресил живой водой,
+        Чтоб вернулся тот домой.
+        </div>
+    <div class="draggable volk-kozlyata" data-container-id="container2" data-type="hint" draggable="true"> Разъезжал верхом на печке, 
+        Знал волшебные словечки. 
+        Скажет их — и сани сами 
+        Отправлялись за дровами, 
+        Вёдра полнились водой, 
+        Друг за дружкой шли домой. 
+        </div>
+    </div>
+    
+    <div class="image-group">
+        <div class="draggable petushok" data-container-id="container3" data-type="image" draggable="true">За добрые дела добром платят.</div>
+        <div class="draggable lisa-zayats-petuh" data-container-id="container3" data-type="image" draggable="true">Кто слушается старшего, нога того о камень не ударится</div>
+        <div class="draggable teremok" data-container-id="container3" data-type="image" draggable="true">По одежке встречают, по уму провожают.</div>
+        <div class="draggable volk-lisa" data-container-id="container3" data-type="image" draggable="true">Большая заслуга – выручить в беде друга.</div>
+        <div class="draggable volk-kozlyata" data-container-id="container3" data-type="image" draggable="true">Одна удача идет, другую ведет.</div>
+  </div>
+  <script src="volsh5.js"></script>
+</body>
+</html>

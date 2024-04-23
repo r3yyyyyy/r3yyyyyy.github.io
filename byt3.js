@@ -64,7 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById(selectedAnimalId).style.border = '2px solid green';
                     infoContainer.style.border = '2px solid green';
                     const taleKey = selectedAnimalId + '_' + this.id;
+                    const correctSound = document.getElementById('correctSound');
+        correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+        correctSound.play(); // Воспроизводим звук при правильном слове
                     const fairyTale = fairyTales[taleKey];
+                    
                     if (fairyTale) {
                         infoText.innerText = fairyTale.name;
                         infoContainer.style.display = 'block';
@@ -85,6 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById(selectedAnimalId).style.border = '2px solid red';
                     infoContainer.style.border = '2px solid red';
                     infoText.innerText = 'Неправильное сочетание, попробуй еще раз.';
+                    const incorrectSound = document.getElementById('incorrectSound');
+                incorrectSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                incorrectSound.play(); // Воспроизводим звук при неправильном слове
                     infoContainer.style.display = 'block';
                     setTimeout(() => {
                         infoContainer.style.display = 'none';

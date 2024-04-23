@@ -12,7 +12,7 @@ const imageCaptions = {
     'vedron': 'Ведро-непроливайка',
     'palkasam': 'Палка-самокопалка',
     'iglasam': 'Иголка-самошвейка',
-    'krsap': 'Летающие сандали'
+    'krsap': 'Летающие сандалии'
 };
 
 let userSelection = []; // Хранит выбранные изображения
@@ -84,7 +84,9 @@ function imageClick(event) {
         if (!userSelection.includes(imageName)) {
             userSelection.push(imageName);
             clickedImage.parentElement.style.opacity = '0'; // Скрываем изображение и облако
-
+            const correctSound = document.getElementById('correctSound');
+            correctSound.volume = 0.3; // Устанавливаем громкость на 0.5
+            correctSound.play(); // Воспроизводим звук при правильном слове
             setTimeout(() => {
                 clickedImage.parentElement.remove();
                 showAnimalAtDoor(clickedImage.src); // Показываем изображение у двери
@@ -101,7 +103,10 @@ function imageClick(event) {
             }
         }
     } else if (incorrectImages.includes(imageName)) {
-        showNotification("Неправильное изображение. Попробуй еще раз!", false);
+        showNotification("Неправильно. Попробуй еще раз!", false);
+        const incorrectSound = document.getElementById('incorrectSound');
+                incorrectSound.volume = 0.3; // Устанавливаем громкость на 0.5
+                incorrectSound.play(); // Воспроизводим звук при неправильном слове
     }
 }
 
