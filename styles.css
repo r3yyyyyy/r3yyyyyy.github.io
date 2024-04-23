@@ -1,8 +1,16 @@
+@font-face {
+    font-family: 'Triod';
+    src: url('fonts/TriodPostnaja.ttf') format('woff2'), /* Формат WOFF2 */
+         url('fonts/TriodPostnaja.ttf') format('woff'); /* Формат WOFF */
+
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('img/fon1.webp');
+    font-family: 'Triod';
+    background-image: url('img/indexfon2.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -25,6 +33,7 @@ h1 {
     position: relative;
     text-decoration: none;
     transition: transform 0.2s; /* Добавляем анимацию при наведении */
+    margin-top: 600px;
 }
 
 .start-game-button img {
