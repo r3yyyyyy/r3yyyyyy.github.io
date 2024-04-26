@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const characters = [
         { name: 'carevna', image: 'img/carevna.png', id: 'carevna', isMagic: true },
-        { name: 'kolobok', image: 'img/kolobok.png', id: 'kolobok', isMagic: true },
+        { name: 'kolobok', image: 'img/kolobok.png', id: 'kolobok', isMagic: false },
         { name: 'belka', image: 'img/belka.png', id: 'belka', isMagic: false },
         { name: 'bura', image: 'img/bura.png', isMagic: false },
         { name: 'zol', image: 'img/zol.png', isMagic: false },
