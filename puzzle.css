@@ -5,7 +5,8 @@
 
   font-weight: normal;
   font-style: normal;
-}body, html {
+}
+body, html {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -31,7 +32,7 @@
 #scoreCounter {
   position: absolute;
   display: inline-block;
-  left: 10px;
+  right: 10px;
   top: 10px;
   font-size: 20px;
   padding: 10px;
@@ -137,7 +138,7 @@ h1 {
   font-family: 'Triod', sans-serif;
   position: absolute;
   top: 12vh;
-  right: 11vw;
+  left: 11vw;
   z-index: 3;
 }
 
@@ -190,18 +191,16 @@ h1 {
   height: 180px;
   position: absolute;
   top: 7vh;
-  right: 4vw;
+  left: 4vw;
   z-index: 1;
-  transform: scale(-1,1);
 }
 .baba-yaga-image {
   position: absolute;
   top: -1.2vh;
-  right: -1.2vw;
+  left: -1.2vw;
   width: 200px; /* Уменьшаем размер изображения Бабы Яги */
   height: auto;
   z-index: 2;
-  transform: scale(-1,1);
 }
 
 
@@ -270,7 +269,7 @@ p{
   border: 2px solid #ccc;
   margin: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,14 +291,23 @@ p{
 .container {
   position: absolute;
   top: 900px;
-  left: 15%;
+  left: 23%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   height: 60px; /* Высота контейнера */
   z-index: 20;
 }
-
+.dropzone::before {
+  content: attr(data-title); /* Выводим текст из атрибута data-title */
+  position: absolute; /* Позиционируем текст абсолютно */
+  top: 10px; /* Перемещаем текст вверх */
+  left: 10px; /* Перемещаем текст влево */
+  padding: 5px 35px; /* Поля вокруг текста */
+  border-radius: 5px; /* Скругление углов */
+  font-size: 18px; /* Размер шрифта */
+  z-index: 1; /* Помещаем текст под другие элементы */
+}
 /* Стили для каждой группы элементов */
 .title-group, .hint-group, .image-group {
   display: flex;
@@ -316,41 +324,52 @@ p{
 
 /* Стили для заголовка */
 .title-group {
-  width: 200px; /* Ширина элементов */
+  width: 14%; /* Ширина элементов */
   justify-content: flex-start;
-  margin-right: 120px;
+  margin-right: 100px;
+
+}
+.title-group .draggable {
+  margin-bottom: 30px; /* Отступ снизу */
 
 }
 
 /* Стили для подсказки */
 .hint-group {
   justify-content: center;
-  width: 300px;
+  width: 500px;
+  margin-bottom: 15px; /* Отступ снизу */
 
 }
-
+.image-group .draggable {
+  margin-bottom: 12.4px; /* Отступ снизу */
+}
 /* Стили для изображения */
 .image-group {
-  width: 165px; /* Ширина элементов */
+  width: 185px; /* Ширина элементов */
   justify-content: flex-end;
-  margin-left: 120px;
-
+  margin-left: 100px;
+  margin-bottom: 15px; /* Отступ снизу */
 }
+.draggable img {
+  width: 130px;
+}
+
 #container1{
   position: absolute;
-  top: 5%;
-  left: 19%;
+  top: 6.5%;
+  left: 38.6%;
   z-index: 20;
 }
 #container2{
   position: absolute;
-  top: 5%;
-  left: 30%;
+  top: 6.5%;
+  left: 49.6%;
   z-index: 20;
 }
 #container3{
   position: absolute;
-  top: 5%;
-  left: 41%;
+  top: 6.5%;
+  left: 60.6%;
   z-index: 20;
 }

@@ -300,6 +300,7 @@
     align-items: flex-end;
     height: 60px; /* Высота контейнера */
     z-index: 20;
+    
   }
   
   /* Стили для каждой группы элементов */
@@ -314,6 +315,7 @@
     background-color: rgba(187, 187, 187, 0.885); /* Полупрозрачный серый фон */
     z-index: 100;
     text-align: center;
+    
   }
   
   /* Стили для заголовка */
@@ -321,6 +323,7 @@
     width: 200px; /* Ширина элементов */
     justify-content: flex-start;
     margin-right: 120px;
+    
   
   }
   

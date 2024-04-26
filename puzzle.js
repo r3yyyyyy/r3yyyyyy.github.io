@@ -61,10 +61,13 @@ dropzones.forEach(dropzone => {
         checkBlocks();
       }
       // Применяем стили для блока при перемещении
-      draggedBlock.style.width = '90%';
+      
       draggedBlock.style.height = '90%';
       draggedBlock.style.top = '50%';
       draggedBlock.style.boxSizing = 'border-box'; // Учитываем padding и border в размере блока
+      
+      // Скрываем надпись при перемещении блока в контейнер
+      dropzone.querySelector('.dropzone-text').style.display = 'none';
     } else {
       // Возвращаем блок в исходный контейнер
       draggedFromContainer.appendChild(draggedBlock);
@@ -268,4 +271,3 @@ imageBlocks.forEach(block => {
   block.appendChild(imgElement);
   imageGroup.appendChild(block);
 });
-
